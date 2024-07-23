@@ -11,6 +11,8 @@ fun main() {
     myWorld += circle
 
     val rectangle = Rectangle(position = Vector2(100, 100))
+    rectangle.equation {t: Number -> Vector2((sin(t as Double) * 100 ) + myWorld.width / 2, (myWorld.height / 2))}
+    rectangle.onCollision {println("Rectangle Collided!")}
     myWorld += rectangle
 
     myWorld.run()

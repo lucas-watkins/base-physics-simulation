@@ -10,8 +10,18 @@ abstract class Shape {
 
     open var position: Vector2 = Vector2(0,0)
 
-    open var calcPos = {_:Number -> Vector2(position.x, position.y)}
+    var calcPos = {_: Number -> Vector2(position.x, position.y)}
 
     fun equation(f: (Number) -> Vector2) { calcPos = f }
-    abstract fun draw(t: Number)
+
+    // require draw function
+    abstract fun draw(t: Double)
+
+    // require function to get area
+    abstract val bounds: Bounds
+
+    // runs if shape has collided with another
+    var doCollision = {}
+
+    fun onCollision(f: () -> Unit){ doCollision = f}
 }

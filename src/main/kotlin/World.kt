@@ -32,6 +32,12 @@ class World(private val name: String,
 
             val time = GetTime()
             for (shape in shapes){
+                for (nshape in shapes){
+                    if (shape.bounds.intersects(nshape.bounds) && shape.bounds != nshape.bounds){
+                        shape.doCollision()
+                        break
+                    }
+                }
                 shape.draw(time)
             }
 

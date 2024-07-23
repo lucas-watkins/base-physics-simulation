@@ -9,9 +9,15 @@ class Circle(override var color: Color = BLACK,
              override var position: Vector2
              ) : Shape() {
 
-    override fun draw(t: Number){
+    override fun draw(t: Double){
         position = calcPos(t)
         DrawCircle(position.x.toInt(), position.y.toInt(),
                    radius.toFloat(), color)
     }
+
+    override val bounds: Bounds
+        get() {
+            return Bounds(position.x, position.y, position.x.toFloat() + radius.toFloat() * 2f,
+                position.y.toFloat() + radius.toFloat() * 2f)
+        }
 }

@@ -10,7 +10,14 @@ class Rectangle(override var color: Color = BLACK,
                 override var position: Vector2 = Vector2(0,0)
 ) : Shape()
 {
-    override fun draw(t: Number){
-        DrawRectangle(position.x as Int, position.y as Int, width, height, color)
+    override fun draw(t: Double){
+        position = calcPos(t)
+        DrawRectangle(position.x.toInt(), position.y.toInt(), width, height, color)
     }
+
+    override val bounds: Bounds
+        get() {
+            return Bounds(position.x, position.y, position.x.toInt() + width,
+                position.y.toInt() + height)
+        }
 }
