@@ -11,7 +11,7 @@ class Circle(override var color: Color = BLACK,
 
     override fun draw(t: Number){
         position = calcPos(t)
-        DrawCircle(position.x().toInt(), position.y().toInt(),
+        DrawCircle(position.x.toInt(), position.y.toInt(),
                    radius, color)
     }
 }
