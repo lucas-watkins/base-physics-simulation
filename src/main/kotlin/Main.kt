@@ -7,8 +7,11 @@ fun main() {
     val circle = Circle(position = Vector2(200,200))
 
     // circle goes up and down because of the sine function
-    circle.equation {t: Number -> Vector2(200, (sin(t as Double) * 100 ) + 200)}
+    circle.equation {t: Number -> Vector2(myWorld.width / 2, (sin(t as Double) * 100 ) + myWorld.height / 2)}
     myWorld += circle
+
+    val rectangle = Rectangle(position = Vector2(100, 100))
+    myWorld += rectangle
 
     myWorld.run()
 }

@@ -3,14 +3,7 @@ package com.lucaspowered.base_physics_simulation
 import com.raylib.Jaylib.InitWindow
 import com.raylib.Jaylib.RAYWHITE
 import com.raylib.Jaylib.SetTargetFPS
-import com.raylib.Raylib.ClearBackground
-import com.raylib.Raylib.Color
-import com.raylib.Raylib.WindowShouldClose
-import com.raylib.Raylib.DrawFPS
-import com.raylib.Raylib.BeginDrawing
-import com.raylib.Raylib.EndDrawing
-import com.raylib.Raylib.GetTime
-import com.raylib.Raylib.CloseWindow
+import com.raylib.Raylib.*
 
 class World(private val name: String,
             var color: Color = RAYWHITE,
