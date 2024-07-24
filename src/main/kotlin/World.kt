@@ -1,9 +1,9 @@
 package com.lucaspowered.base_physics_simulation
 
-import com.raylib.Jaylib.InitWindow
-import com.raylib.Jaylib.RAYWHITE
-import com.raylib.Jaylib.SetTargetFPS
-import com.raylib.Raylib.*
+import com.raylib.Jaylib.*
+import com.raylib.Raylib.Color
+
+typealias Bounds = com.raylib.Jaylib.Rectangle
 
 class World(private val name: String,
             var color: Color = RAYWHITE,
@@ -20,6 +20,8 @@ class World(private val name: String,
     val height: Int
         get() = resolution[1]
 
+    var debug: Boolean = false
+
     fun run() {
         InitWindow(resolution[0], resolution[1], name)
         SetTargetFPS(targetFps)
@@ -28,16 +30,29 @@ class World(private val name: String,
             // update loop
             ClearBackground(color)
             BeginDrawing()
-            DrawFPS(0,0)
+
+            if (debug) {
+                DrawFPS(0, 0)
+            }
 
             val time = GetTime()
             for (shape in shapes){
-                for (nshape in shapes){
-                    if (shape.bounds.intersects(nshape.bounds) && shape.bounds != nshape.bounds){
-                        shape.doCollision()
-                        break
+
+                // draw hitboxes
+                if (debug) {
+                    DrawRectangle(shape.bounds.x().toInt(), shape.bounds.y().toInt(), shape.bounds.width().toInt(),
+                        shape.bounds.height().toInt(), ORANGE)
+                }
+
+                /* in theory this works because it runs this for every shape. this checks if another shape is colliding
+                 with the current shape and if so, runs its doCollision method.  */
+
+                for (oshape in otherShapes(shape)){
+                    if (CheckCollisionRecs(oshape.bounds, shape.bounds)){
+                        oshape.doCollision()
                     }
                 }
+
                 shape.draw(time)
             }
 
@@ -55,5 +70,14 @@ class World(private val name: String,
 
     fun add(s: Shape){
         plusAssign(s)
+    }
+
+    // get other shapes from shapes list
+    private fun otherShapes(s: Shape): Array<Shape> {
+
+        // shallow copy
+        val t = shapes.toMutableList()
+        t.remove(s)
+        return t.toTypedArray()
     }
 }

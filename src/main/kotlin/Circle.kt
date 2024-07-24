@@ -17,7 +17,7 @@ class Circle(override var color: Color = BLACK,
 
     override val bounds: Bounds
         get() {
-            return Bounds(position.x, position.y, position.x.toFloat() + radius.toFloat() * 2f,
-                position.y.toFloat() + radius.toFloat() * 2f)
+            return Bounds(position.x.toFloat() - radius.toFloat(),
+                position.y.toFloat() - radius.toFloat(), radius.toFloat() * 2f, radius.toFloat() * 2f)
         }
 }

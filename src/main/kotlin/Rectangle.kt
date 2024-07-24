@@ -17,7 +17,6 @@ class Rectangle(override var color: Color = BLACK,
 
     override val bounds: Bounds
         get() {
-            return Bounds(position.x, position.y, position.x.toInt() + width,
-                position.y.toInt() + height)
+            return Bounds(position.x.toFloat(), position.y.toFloat(), width.toFloat(), height.toFloat())
         }
 }
