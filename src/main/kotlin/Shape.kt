@@ -20,6 +20,9 @@ abstract class Shape {
     // require function to get area
     abstract val bounds: Bounds
 
+    // boolean for not re-colliding every frame
+    var hasCollided = false
+
     // runs if shape has collided with another
     var doCollision = {}
 

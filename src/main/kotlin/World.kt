@@ -31,6 +31,11 @@ class World(private val name: String,
             ClearBackground(color)
             BeginDrawing()
 
+            // f3 to toggle debug, just like Minecraft
+            if (IsKeyPressed(KEY_F3)){
+                debug = !debug
+            }
+
             if (debug) {
                 DrawFPS(0, 0)
             }
@@ -45,11 +50,18 @@ class World(private val name: String,
                 }
 
                 /* in theory this works because it runs this for every shape. this checks if another shape is colliding
-                 with the current shape and if so, runs its doCollision method.  */
+                 with the current shape and if the shape has not previously collided. if so it runs
+                 its doCollision method. Otherwise, if the shapes have not collided but the other shape has reset the
+                 has collided boolean on the other shape to false. */
 
                 for (oshape in otherShapes(shape)){
-                    if (CheckCollisionRecs(oshape.bounds, shape.bounds)){
+                    val hasCollided = CheckCollisionRecs(oshape.bounds, shape.bounds)
+                    if ( hasCollided && !oshape.hasCollided){
+                        oshape.hasCollided = true
                         oshape.doCollision()
+                    }
+                    else if (!hasCollided && oshape.hasCollided){
+                        oshape.hasCollided = false
                     }
                 }
 
@@ -70,6 +82,15 @@ class World(private val name: String,
 
     fun add(s: Shape){
         plusAssign(s)
+    }
+
+    // remove shapes
+    operator fun minusAssign(s: Shape){
+        shapes.remove(s)
+    }
+
+    fun remove(s: Shape){
+        minusAssign(s)
     }
 
     // get other shapes from shapes list
