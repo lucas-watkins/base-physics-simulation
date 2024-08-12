@@ -7,6 +7,9 @@ group = 'org.example'
 version = '1.0-SNAPSHOT'
 application.mainClass = "MainKt"
 
+// breaks on macos without this jvm flag lol
+applicationDefaultJvmArgs = ["-XstartOnFirstThread"]
+
 repositories {
     mavenCentral()
 }
