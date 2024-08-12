@@ -1,5 +1,7 @@
-package com.lucaspowered.base_physics_simulation
+package com.lucaspowered.base_physics_simulation.shapes
 
+import com.lucaspowered.base_physics_simulation.Bounds
+import com.lucaspowered.base_physics_simulation.Vector2
 import com.raylib.Jaylib.BLACK
 import com.raylib.Raylib.Color
 
@@ -10,7 +12,7 @@ abstract class Shape {
 
     open var position: Vector2 = Vector2(0,0)
 
-    var calcPos = {_: Number -> Vector2(position.x, position.y)}
+    var calcPos = {_: Number -> Vector2(position.x, position.y) }
 
     fun equation(f: (Number) -> Vector2) { calcPos = f }
 

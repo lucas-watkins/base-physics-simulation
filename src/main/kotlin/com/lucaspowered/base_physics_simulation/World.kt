@@ -2,6 +2,7 @@ package com.lucaspowered.base_physics_simulation
 
 import com.raylib.Jaylib.*
 import com.raylib.Raylib.Color
+import com.lucaspowered.base_physics_simulation.shapes.Shape
 
 typealias Bounds = com.raylib.Jaylib.Rectangle
 
@@ -23,6 +24,7 @@ class World(private val name: String,
     var debug: Boolean = false
 
     fun run() {
+
         InitWindow(resolution[0], resolution[1], name)
         SetTargetFPS(targetFps)
 

@@ -1,5 +1,7 @@
-package com.lucaspowered.base_physics_simulation
+package com.lucaspowered.base_physics_simulation.shapes
 
+import com.lucaspowered.base_physics_simulation.Bounds
+import com.lucaspowered.base_physics_simulation.Vector2
 import com.raylib.Jaylib.BLACK
 import com.raylib.Raylib.Color
 import com.raylib.Raylib.DrawRectangle
