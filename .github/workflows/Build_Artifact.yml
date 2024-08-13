@@ -1,0 +1,25 @@
+jobs:
+  Build Artifact:
+    runs-on: ubuntu-latest
+
+    on: [push]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.2.2
+        with:
+          distribution: 'zulu'
+          version: '21'
+
+      - name: Build Artifact
+        run: ./gradlew build
+
+      - name: Upload Artifact
+        run: mv build/libs/base-physics-simulation-1.0-SNAPSHOT.jar build/libs/base-physics-simulation.jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'base-physics-simulation.jar'
+          path: 'build/libs/base-physics-simulation.jar'
