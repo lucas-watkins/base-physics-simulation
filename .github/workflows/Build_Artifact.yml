@@ -2,7 +2,9 @@ jobs:
   Build Artifact:
     runs-on: ubuntu-latest
 
-    on: [push]
+    on:
+      push:
+        branches: ["main"]
 
     steps:
       - name: Checkout
