@@ -1,11 +1,11 @@
-name: Build-Artifact
+name: Build Artifact
 
 on:
   push:
     branches: ["main"]
 
 jobs:
-  Build Artifact:
+  Build_Artifact:
     runs-on: ubuntu-latest
 
     steps:
