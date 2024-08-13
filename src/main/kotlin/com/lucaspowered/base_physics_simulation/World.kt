@@ -4,7 +4,7 @@ import com.raylib.Jaylib.*
 import com.raylib.Raylib.Color
 import com.lucaspowered.base_physics_simulation.shapes.Shape
 
-typealias Bounds = com.raylib.Jaylib.Rectangle
+typealias Bounds = Rectangle
 
 class World(private val name: String,
             var color: Color = RAYWHITE,
@@ -38,10 +38,6 @@ class World(private val name: String,
                 debug = !debug
             }
 
-            if (debug) {
-                DrawFPS(0, 0)
-            }
-
             val time = GetTime()
             for (shape in shapes){
 
@@ -68,6 +64,20 @@ class World(private val name: String,
                 }
 
                 shape.draw(time)
+            }
+
+            if (debug) {
+                DrawRectangle(0, 0, 115, 105, BLACK)
+                DrawRectangle(0, 0, 110, 100, RAYWHITE)
+                DrawFPS(0, 0)
+                DrawText(" OS: ${System.getProperty("os.name")}", 0, 25, 10,
+                    BLACK)
+                DrawText(" Arch: ${System.getProperty("os.arch")}", 0, 35, 10,
+                    BLACK)
+                DrawText(" JRE Vendor: ${System.getProperty("java.vendor").substringBefore(" ")}",
+                    0, 45, 10, BLACK)
+                DrawText(" Java Version: ${System.getProperty("java.version")}", 0, 55, 10,
+                    BLACK)
             }
 
             EndDrawing()
