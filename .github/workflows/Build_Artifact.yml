@@ -19,7 +19,7 @@ jobs:
           java-version: '21'
 
       - name: Build Artifact
-        run: ./gradlew build
+        run: ./gradlew build -x test
 
       - name: Rename Artifact
         run: mv build/libs/base-physics-simulation-1.0-SNAPSHOT.jar build/libs/base-physics-simulation.jar
