@@ -41,11 +41,6 @@ class World(private val name: String,
             val time = GetTime()
             for (shape in shapes){
 
-                // draw hitboxes
-                if (debug) {
-                    DrawRectangle(shape.bounds.x().toInt(), shape.bounds.y().toInt(), shape.bounds.width().toInt(),
-                        shape.bounds.height().toInt(), ORANGE)
-                }
 
                 /* in theory this works because it runs this for every shape. this checks if another shape is colliding
                  with the current shape and if the shape has not previously collided. if so it runs
@@ -64,6 +59,14 @@ class World(private val name: String,
                 }
 
                 shape.draw(time)
+
+                // draw hit boxes
+                if (debug) {
+                    DrawRectangle(shape.bounds.x().toInt(), shape.bounds.y().toInt(), shape.bounds.width().toInt(),
+                        shape.bounds.height().toInt(), ORANGE)
+
+                    shape.draw(time)
+                }
             }
 
             if (debug) {
