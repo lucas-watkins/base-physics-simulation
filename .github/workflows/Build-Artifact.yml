@@ -22,7 +22,7 @@ jobs:
         run: ./gradlew shadowJar -x test
 
       - name: Rename Artifact
-        run: mv build/libs/base-physics-simulation-1.0-SNAPSHOT.jar build/libs/base-physics-simulation.jar
+        run: mv build/libs/base-physics-simulation-1.0-SNAPSHOT-all.jar build/libs/base-physics-simulation.jar
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

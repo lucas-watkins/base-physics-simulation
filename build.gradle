@@ -6,6 +6,7 @@ plugins {
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
+mainClassName = ""
 
 // breaks on macos without this jvm flag lol
 // might want to patch this into code as well
