@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          version: '21'
+          java-version: '21'
 
       - name: Build Artifact
         run: ./gradlew build
