@@ -23,6 +23,8 @@ class World(private val name: String,
 
     var debug: Boolean = false
 
+    private val time = Time()
+
     fun run() {
 
         InitWindow(resolution[0], resolution[1], name)
@@ -38,7 +40,22 @@ class World(private val name: String,
                 debug = !debug
             }
 
-            val time = GetTime()
+            // r key to reset time
+            if (IsKeyPressed(KEY_R)){
+                time.reset()
+            }
+
+            // right arrow to skip forward 5 sec of time
+            if (IsKeyPressed(KEY_RIGHT)){
+                time += 5.toDouble()
+            }
+
+            // left arrow to skip backward 5 sec of time
+            if (IsKeyPressed(KEY_LEFT)){
+                time -= 5.toDouble()
+            }
+
+
             for (shape in shapes){
 
 
@@ -58,14 +75,14 @@ class World(private val name: String,
                     }
                 }
 
-                shape.draw(time)
+                shape.draw(time.secondsSinceReset)
 
                 // draw hit boxes
                 if (debug) {
                     DrawRectangle(shape.bounds.x().toInt(), shape.bounds.y().toInt(), shape.bounds.width().toInt(),
                         shape.bounds.height().toInt(), ORANGE)
 
-                    shape.draw(time)
+                    shape.draw(time.secondsSinceReset)
                 }
             }
 
@@ -81,6 +98,7 @@ class World(private val name: String,
                     0, 45, 10, BLACK)
                 DrawText(" Java Version: ${System.getProperty("java.version")}", 0, 55, 10,
                     BLACK)
+                DrawText(" T = ${time.secondsSinceReset}", 0, 65, 20, BLACK)
             }
 
             EndDrawing()
